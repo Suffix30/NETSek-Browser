@@ -1,6 +1,6 @@
-# WEBSec Browser ( CONCEPT IDEA )
+# NETSek Browser ( CONCEPT IDEA )
 
-![WEBSec Browser](https://cdn.discordapp.com/attachments/1330364533600030763/1330364534170452068/image.png?ex=678db605&is=678c6485&hm=9fa8727563124ad4793b481c57402ba69b12cd303c68571e618662e0546093f9&)
+![NETSek Browser](https://cdn.discordapp.com/attachments/1330364533600030763/1330364534170452068/image.png?ex=678db605&is=678c6485&hm=9fa8727563124ad4793b481c57402ba69b12cd303c68571e618662e0546093f9&)
 
 A cyberpunk-themed security-focused web browser interface built with React, featuring a comprehensive suite of penetration testing and security analysis tools.
 
@@ -56,8 +56,8 @@ A cyberpunk-themed security-focused web browser interface built with React, feat
 
 1. Clone the repository
 ```bash
-git clone https://github.com/Suffix30/WEBSec-Browser.git
-cd WEBSec-Browser
+git clone https://github.com/Suffix30/NETSek-Browser.git
+cd NETSek-Browser
 ```
 
 2. Install dependencies
@@ -116,9 +116,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create your feature branch (`git checkout -b blah/blah`)
+3. Commit your changes (`git commit -m 'blah/blah'`)
+4. Push to the branch (`git push origin blah/blah`)
 5. Open a Pull Request
 
 ## Acknowledgments
@@ -127,8 +127,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-Project Link: [https://github.com/Suffix30/WEBSec-Browser](https://github.com/Suffix30/WEBSec-Browser)
+Project Link: [https://github.com/Suffix30/NETSek-Browser](https://github.com/Suffix30/NETSek-Browser)
 
 ## 🌐 Live Demo
 
-Check out the live demo: [https://suffix30.github.io/WEBSec-Browser/](https://suffix30.github.io/WEBSec-Browser/)
+Check out the live demo: [https://suffix30.github.io/NETSek-Browser/](https://suffix30.github.io/NETSek-Browser/)
