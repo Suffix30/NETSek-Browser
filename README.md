@@ -127,7 +127,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-Project Link: [https://github.com/Suffix30/NETSek-Browser](https://github.com/Suffix30/NETSek-Browser)
+Project Link: [https://github.com/Suffix30/NETSek-Browser](https://github.com/Suffix30/UNDER_REPAIR_404)
 
 ## 🌐 Live Demo
 
