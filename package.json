@@ -1,6 +1,5 @@
 {
   "name": "netsek-browser",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://suffix30.github.io/NETSek-Browser/",
