@@ -13,7 +13,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -b gh-pages --repo https://github.com/Suffix30/NETSek-Browser.git --message 'Deploying to GitHub Pages'"
+    "deploy": "gh-pages -d dist -b gh-pages --repo=https://github.com/Suffix30/NETSek-Browser.git --message='Deploying to GitHub Pages'"
   },
   "dependencies": {
     "@xterm/addon-fit": "^0.10.0",
