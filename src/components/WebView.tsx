@@ -19,7 +19,7 @@ export const WebView: React.FC = () => {
       // Update page title based on URL
       try {
         const urlObj = new URL(normalizedUrl);
-        document.title = `${urlObj.hostname} - WEBSec Browser`;
+        document.title = `${urlObj.hostname} - NETSek Browser`;
       } catch (error) {
         console.error('Invalid URL:', error);
       }

@@ -1,4 +1,4 @@
-import { ITerminalOptions } from 'xterm';
+import { ITerminalOptions } from '@xterm/xterm';
 
 export const terminalOptions: ITerminalOptions = {
   theme: {
@@ -6,7 +6,6 @@ export const terminalOptions: ITerminalOptions = {
     foreground: '#a9b1d6',
     cursor: '#00fff2',
     cursorAccent: '#00fff2',
-    selection: '#28344a',
     black: '#32344a',
     blue: '#7aa2f7',
     cyan: '#00fff2',
@@ -21,8 +20,5 @@ export const terminalOptions: ITerminalOptions = {
   cursorBlink: true,
   cursorStyle: 'block',
   convertEol: true,
-  scrollback: 1000,
-  rows: 24,
-  cols: 80,
-  rendererType: 'canvas'
+  scrollback: 1000
 };

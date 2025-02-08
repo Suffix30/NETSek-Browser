@@ -22,8 +22,8 @@ export const EmptyState: React.FC = () => {
             }}
           />
         </div>
-        <h1 className="text-5xl font-bold mb-6 glow-text">
-          WEBSec Browser
+        <h1 className="text-5xl font-bold mb-6 glow-text bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-purple-500">
+          NETSek Browser
         </h1>
         <p className="text-xl text-gray-400 max-w-lg">
           Enter a URL above to begin your secure browsing experience

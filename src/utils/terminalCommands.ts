@@ -1,4 +1,4 @@
-import { Terminal } from 'xterm';
+import { Terminal } from '@xterm/xterm';
 
 export interface TerminalCommand {
   execute: (term: Terminal, args: string[]) => Promise<void>;
@@ -12,7 +12,6 @@ interface FileSystem {
   openFiles: Record<string, { content: string; cursorPos: number }>;
 }
 
-// Simulated file system state
 const fileSystem: FileSystem = {
   currentDir: '/home/user',
   files: {
@@ -53,7 +52,7 @@ const formatSize = (path: string): number => {
   if (fileSystem.fileContents[path]) {
     return fileSystem.fileContents[path].length;
   }
-  return 4096; // Default size for directories
+  return 4096;
 };
 
 const formatDate = (): string => {
@@ -64,31 +63,26 @@ const formatDate = (): string => {
 
 const renderNanoEditor = (term: Terminal, filename: string, content: string, cursorPos: number) => {
   term.clear();
-  term.write('\x1b[H'); // Move cursor to home position
+  term.write('\x1b[H');
 
-  // Header
   term.writeln(`  GNU nano                    ${filename}                    `);
   term.writeln('─'.repeat(term.cols));
 
-  // Content area
   const lines = content.split('\n');
   lines.forEach(line => {
     term.writeln(line);
   });
 
-  // Fill remaining space
   const contentHeight = lines.length;
-  const remainingLines = term.rows - contentHeight - 6; // Account for header and footer
+  const remainingLines = term.rows - contentHeight - 6;
   if (remainingLines > 0) {
     term.writeln('\n'.repeat(remainingLines));
   }
 
-  // Footer
   term.writeln('─'.repeat(term.cols));
   term.writeln('^G Get Help  ^O Write Out  ^W Where Is  ^K Cut Text  ^J Justify   ^C Cancel');
   term.writeln('^X Exit      ^R Read File  ^\ Replace   ^U Paste     ^T To Spell');
 
-  // Restore cursor position
   const line = Math.floor(cursorPos / term.cols);
   const col = cursorPos % term.cols;
   term.write(`\x1b[${line + 3};${col + 1}H`);
@@ -115,8 +109,7 @@ export const commands: Record<string, TerminalCommand> = {
       }
 
       if (args.includes('-l')) {
-        // Long format
-        const total = files.length * 4; // Simulated block count
+        const total = files.length * 4;
         term.writeln(`total ${total}`);
         files.forEach(file => {
           const isDir = fileSystem.files[`${path}/${file}`] !== undefined;
@@ -126,7 +119,6 @@ export const commands: Record<string, TerminalCommand> = {
           term.writeln(`${perms} user user ${size.toString().padStart(8)} ${date} ${file}`);
         });
       } else {
-        // Simple format
         term.writeln(files.join('  '));
       }
       term.write('$ ');
@@ -277,7 +269,6 @@ export const commands: Record<string, TerminalCommand> = {
       const filename = args[0];
       const path = resolvePath(filename);
 
-      // Initialize or get existing file content
       if (!fileSystem.openFiles[path]) {
         const initialContent = fileSystem.fileContents[path] || '';
         fileSystem.openFiles[path] = {
@@ -286,23 +277,21 @@ export const commands: Record<string, TerminalCommand> = {
         };
       }
 
-      const fileState = fileSystem.openFiles[path];
+      let fileState = fileSystem.openFiles[path]; // Ensure `fileState` is defined in scope
       renderNanoEditor(term, filename, fileState.content, fileState.cursorPos);
 
-      // Handle keyboard input
       const disposable = term.onKey(({ domEvent }) => {
-        const ev = domEvent;
-        
-        // Handle control keys
-        if (ev.ctrlKey) {
-          switch (ev.key.toLowerCase()) {
-            case 'x': // Exit
+        const { key, ctrlKey } = domEvent;
+
+        if (ctrlKey) {
+          switch (key.toLowerCase()) {
+            case 'x':
               disposable.dispose();
               term.clear();
               term.write('$ ');
               delete fileSystem.openFiles[path];
               return;
-            case 'o': // Save
+            case 'o':
               fileSystem.fileContents[path] = fileState.content;
               term.writeln('\r\nFile saved');
               return;
@@ -310,25 +299,23 @@ export const commands: Record<string, TerminalCommand> = {
           return;
         }
 
-        // Handle regular input
-        if (ev.key === 'Enter') {
+        if (key === 'Enter') {
           const content = fileState.content;
           const pos = fileState.cursorPos;
           fileState.content = content.slice(0, pos) + '\n' + content.slice(pos);
           fileState.cursorPos = pos + 1;
-        } else if (ev.key === 'Backspace') {
+        } else if (key === 'Backspace') {
           if (fileState.cursorPos > 0) {
             const content = fileState.content;
             fileState.content = content.slice(0, fileState.cursorPos - 1) + content.slice(fileState.cursorPos);
             fileState.cursorPos--;
           }
-        } else if (ev.key.length === 1) { // Regular character
+        } else if (key.length === 1) {
           const content = fileState.content;
-          fileState.content = content.slice(0, fileState.cursorPos) + ev.key + content.slice(fileState.cursorPos);
+          fileState.content = content.slice(0, fileState.cursorPos) + key + content.slice(fileState.cursorPos);
           fileState.cursorPos++;
         }
 
-        // Re-render editor
         renderNanoEditor(term, filename, fileState.content, fileState.cursorPos);
       });
     },

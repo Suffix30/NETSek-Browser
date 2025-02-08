@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { Terminal as XTerm } from 'xterm';
-import { FitAddon } from 'xterm-addon-fit';
-import { WebLinksAddon } from 'xterm-addon-web-links';
+import { Terminal as XTerm } from '@xterm/xterm';
+import { FitAddon } from '@xterm/addon-fit';
 import { initializeTerminal } from '../utils/terminalInitializer';
 import { useTerminalState } from './useTerminalState';
 import { useTerminalResize } from './useTerminalResize';
 
 export function useTerminal() {
-  const terminalRef = useRef<HTMLDivElement>(null);
+  const terminalRef = useRef<HTMLDivElement | null>(null);
   const xtermRef = useRef<XTerm | null>(null);
   const fitAddonRef = useRef<FitAddon | null>(null);
   const cleanupRef = useRef<(() => void) | null>(null);
@@ -16,7 +15,7 @@ export function useTerminal() {
   const [isReady, setIsReady] = useState(false);
 
   const handleResize = useCallback(() => {
-    if (fitAddonRef.current && terminalRef.current?.offsetHeight > 0) {
+    if (fitAddonRef.current && terminalRef.current && terminalRef.current.offsetHeight > 0) {
       try {
         fitAddonRef.current.fit();
       } catch (error) {
@@ -63,10 +62,8 @@ export function useTerminal() {
     return () => {
       mountedRef.current = false;
       clearTimeout(initTimer);
-      if (cleanupRef.current) {
-        cleanupRef.current();
-        cleanupRef.current = null;
-      }
+      cleanupRef.current?.();
+      cleanupRef.current = null;
       xtermRef.current = null;
       fitAddonRef.current = null;
       setIsReady(false);
@@ -77,9 +74,7 @@ export function useTerminal() {
     terminalRef,
     isReady,
     focusTerminal: useCallback(() => {
-      if (xtermRef.current) {
-        xtermRef.current.focus();
-      }
+      xtermRef.current?.focus();
     }, [])
   };
 }

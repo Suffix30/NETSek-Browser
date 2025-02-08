@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Terminal as TerminalIcon } from 'lucide-react';
-import { Terminal as XTerm } from 'xterm';
-import { FitAddon } from 'xterm-addon-fit';
-import { WebLinksAddon } from 'xterm-addon-web-links';
+import { Terminal as XTerm } from '@xterm/xterm';
+import { FitAddon } from '@xterm/addon-fit';
+import { WebLinksAddon } from '@xterm/addon-web-links';
 import { commands } from '../utils/terminalCommands';
-import 'xterm/css/xterm.css';
+import '@xterm/xterm/css/xterm.css';
 
 export const Terminal: React.FC = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
@@ -98,7 +98,7 @@ export const Terminal: React.FC = () => {
       fitAddon.fit();
 
       // Initial prompt
-      term.write('Welcome to WEBSec Terminal\r\n$ ');
+      term.write('Welcome to NETSek Terminal\r\n$ ');
 
       const refreshLine = () => {
         term.write('\r\x1b[K$ ' + inputRef.current);

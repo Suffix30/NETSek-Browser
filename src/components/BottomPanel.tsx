@@ -3,7 +3,7 @@ import { usePanelStore } from '../store/panelStore';
 import { ResultsPanel } from './ResultsPanel';
 import { SecurityPanel } from './SecurityPanel';
 import { Console } from './Console';
-import { ToolConfig } from './ToolConfig';
+import { ToolConfigPanel } from './ToolConfig';
 import { HeaderInspector } from './HeaderInspector';
 import { Terminal } from './Terminal';
 
@@ -48,11 +48,11 @@ export const BottomPanel: React.FC = () => {
           />
         )}
         {activePanel === 'console' && <Console />}
-        {activePanel === 'config' && <ToolConfig />}
+        {activePanel === 'config' && <ToolConfigPanel />}
         {activePanel === 'headers' && (
           <HeaderInspector
             requestHeaders={{
-              'User-Agent': 'WEBSec Browser',
+              'User-Agent': 'NETSek Browser',
               'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
               'Accept-Language': 'en-US,en;q=0.5',
               'Accept-Encoding': 'gzip, deflate, br',

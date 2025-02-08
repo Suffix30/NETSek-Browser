@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Shield, Cookie, FileJson, AlertTriangle } from 'lucide-react';
 import { SecurityAnalysis } from '../types/browser';
 import { analyzeHeaders, analyzeCookies } from '../utils/securityAnalyzer';
-import { useBrowserStore } from '../store/browserStore';
 
 interface SecurityIssue {
   issue: string;
@@ -12,7 +11,6 @@ interface SecurityIssue {
 export const SecurityPanel: React.FC<{ analysis: SecurityAnalysis }> = ({ analysis }) => {
   const [headerIssues, setHeaderIssues] = useState<SecurityIssue[]>([]);
   const [cookieIssues, setCookieIssues] = useState<SecurityIssue[]>([]);
-  const { url } = useBrowserStore();
 
   useEffect(() => {
     const { security: hIssues } = analyzeHeaders(analysis.headers);

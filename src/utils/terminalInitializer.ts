@@ -1,9 +1,10 @@
-import { Terminal as XTerm } from 'xterm';
-import { FitAddon } from 'xterm-addon-fit';
-import { WebLinksAddon } from 'xterm-addon-web-links';
+import { Terminal as XTerm } from '@xterm/xterm';
+import { FitAddon } from '@xterm/addon-fit';
+import { WebLinksAddon } from '@xterm/addon-web-links';
 import { terminalOptions } from './terminalConfig';
 import { handleTerminalCommand } from './terminalHandler';
 import { MutableRefObject } from 'react';
+
 
 export const initializeTerminal = async (
   container: HTMLDivElement,
@@ -25,10 +26,7 @@ export const initializeTerminal = async (
   const term = new XTerm({
     ...terminalOptions,
     allowTransparency: true,
-    fontSize: 14,
-    fontFamily: 'JetBrains Mono, monospace',
-    theme: terminalOptions.theme,
-    rendererType: 'canvas'
+    theme: terminalOptions.theme
   });
 
   const fitAddon = new FitAddon();
@@ -42,7 +40,7 @@ export const initializeTerminal = async (
   fitAddon.fit();
 
   term.reset();
-  term.write('\r\n$ ');
+  term.write('Welcome to NETSek Terminal\r\n$ ');
 
   const resizeObserver = new ResizeObserver(() => {
     if (container.offsetHeight > 0 && container.offsetWidth > 0) {

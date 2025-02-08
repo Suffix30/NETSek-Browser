@@ -15,6 +15,7 @@ interface ScriptStore {
   updateScript: (id: string, updates: Partial<Omit<Script, 'id'>>) => void;
   deleteScript: (id: string) => void;
   loadScripts: () => void;
+  getScripts: () => Script[];
 }
 
 export const useScriptStore = create<ScriptStore>((set, get) => ({
@@ -64,4 +65,6 @@ export const useScriptStore = create<ScriptStore>((set, get) => ({
       set({ scripts: [] });
     }
   },
+
+  getScripts: () => get().scripts,
 }));

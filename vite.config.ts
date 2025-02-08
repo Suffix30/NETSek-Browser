@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/WEBSec-Browser/',
+  base: '/NETSek-Browser/',
   optimizeDeps: {
     exclude: ['lucide-react'],
   },

@@ -68,11 +68,19 @@ const KALI_TOOL_PATHS = {
   metasploit: '/usr/bin/msfconsole',
   recon_ng: '/usr/bin/recon-ng',
   spiderfoot: '/usr/bin/spiderfoot'
-};
+} as const;
 
 export interface ToolConfig {
+  id: string;
   name: string;
   command: string;
+  args?: {
+    name: string;
+    description: string;
+    type: 'string' | 'number' | 'boolean';
+    default?: string | number | boolean;
+    required?: boolean;
+  }[];
   parseOutput?: (output: string) => any;
   category: 'web' | 'network' | 'subdomain' | 'service' | 'cloud' | 'application' | 'wireless' | 'misc';
   description: string;
@@ -82,6 +90,7 @@ export interface ToolConfig {
 export const tools: Record<string, ToolConfig> = {
   // Web Enumeration Tools
   whatweb: {
+    id: 'whatweb',
     name: 'WhatWeb',
     command: '{path} {target} --color=never',
     category: 'web',
@@ -89,6 +98,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.whatweb
   },
   wappalyzer: {
+    id: 'wappalyzer',
     name: 'Wappalyzer CLI',
     command: '{path} {target}',
     category: 'web',
@@ -96,6 +106,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.wappalyzer
   },
   nikto: {
+    id: 'nikto',
     name: 'Nikto',
     command: '{path} -h {target}',
     category: 'web',
@@ -103,6 +114,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.nikto
   },
   httpprobe: {
+    id: 'httpprobe',
     name: 'HTTProbe',
     command: '{path} {target}',
     category: 'web',
@@ -110,6 +122,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.httpprobe
   },
   aquatone: {
+    id: 'aquatone',
     name: 'Aquatone',
     command: '{path} -url {target}',
     category: 'web',
@@ -117,6 +130,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.aquatone
   },
   gobuster: {
+    id: 'gobuster',
     name: 'Gobuster',
     command: '{path} dir -u {target} -w /usr/share/wordlists/dirb/common.txt',
     category: 'web',
@@ -124,6 +138,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.gobuster
   },
   dirsearch: {
+    id: 'dirsearch',
     name: 'Dirsearch',
     command: '{path} -u {target}',
     category: 'web',
@@ -131,6 +146,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.dirsearch
   },
   ffuf: {
+    id: 'ffuf',
     name: 'FFUF',
     command: '{path} -u {target}/FUZZ -w /usr/share/wordlists/dirb/common.txt',
     category: 'web',
@@ -138,6 +154,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.ffuf
   },
   wfuzz: {
+    id: 'wfuzz',
     name: 'Wfuzz',
     command: '{path} -c -z file,/usr/share/wordlists/dirb/common.txt --hc 404 {target}/FUZZ',
     category: 'web',
@@ -145,6 +162,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.wfuzz
   },
   davtest: {
+    id: 'davtest',
     name: 'DAVTest',
     command: '{path} -url {target}',
     category: 'web',
@@ -154,6 +172,7 @@ export const tools: Record<string, ToolConfig> = {
 
   // Network and Port Enumeration Tools
   nmap: {
+    id: 'nmap',
     name: 'Nmap',
     command: '{path} -sV {target}',
     category: 'network',
@@ -161,6 +180,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.nmap
   },
   masscan: {
+    id: 'masscan',
     name: 'Masscan',
     command: '{path} -p1-65535 {target}',
     category: 'network',
@@ -168,6 +188,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.masscan
   },
   unicornscan: {
+    id: 'unicornscan',
     name: 'Unicornscan',
     command: '{path} {target}',
     category: 'network',
@@ -175,6 +196,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.unicornscan
   },
   netcat: {
+    id: 'netcat',
     name: 'Netcat',
     command: '{path} -zv {target} 1-1000',
     category: 'network',
@@ -182,6 +204,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.netcat
   },
   tcpdump: {
+    id: 'tcpdump',
     name: 'TCPDump',
     command: '{path} -i any host {target}',
     category: 'network',
@@ -191,6 +214,7 @@ export const tools: Record<string, ToolConfig> = {
 
   // Subdomain and DNS Enumeration Tools
   sublist3r: {
+    id: 'sublist3r',
     name: 'Sublist3r',
     command: '{path} -d {target}',
     category: 'subdomain',
@@ -198,6 +222,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.sublist3r
   },
   amass: {
+    id: 'amass',
     name: 'Amass',
     command: '{path} enum -d {target}',
     category: 'subdomain',
@@ -205,6 +230,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.amass
   },
   assetfinder: {
+    id: 'assetfinder',
     name: 'Assetfinder',
     command: '{path} {target}',
     category: 'subdomain',
@@ -212,6 +238,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.assetfinder
   },
   dnsrecon: {
+    id: 'dnsrecon',
     name: 'DNSRecon',
     command: '{path} -d {target}',
     category: 'subdomain',
@@ -219,6 +246,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.dnsrecon
   },
   fierce: {
+    id: 'fierce',
     name: 'Fierce',
     command: '{path} --domain {target}',
     category: 'subdomain',
@@ -228,6 +256,7 @@ export const tools: Record<string, ToolConfig> = {
 
   // Service Enumeration Tools
   enum4linux: {
+    id: 'enum4linux',
     name: 'Enum4Linux',
     command: '{path} {target}',
     category: 'service',
@@ -235,6 +264,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.enum4linux
   },
   smbclient: {
+    id: 'smbclient',
     name: 'SMBClient',
     command: '{path} -L {target} -N',
     category: 'service',
@@ -242,6 +272,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.smbclient
   },
   crackmapexec: {
+    id: 'crackmapexec',
     name: 'CrackMapExec',
     command: '{path} smb {target}',
     category: 'service',
@@ -249,6 +280,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.crackmapexec
   },
   ldapsearch: {
+    id: 'ldapsearch',
     name: 'LDAPSearch',
     command: '{path} -h {target} -x -s base',
     category: 'service',
@@ -256,6 +288,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.ldapsearch
   },
   hydra: {
+    id: 'hydra',
     name: 'Hydra',
     command: '{path} -L users.txt -P pass.txt {target} http-post-form',
     category: 'service',
@@ -265,6 +298,7 @@ export const tools: Record<string, ToolConfig> = {
 
   // Cloud and API Tools
   cloudbrute: {
+    id: 'cloudbrute',
     name: 'CloudBrute',
     command: '{path} -d {target}',
     category: 'cloud',
@@ -272,6 +306,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.cloudbrute
   },
   s3scanner: {
+    id: 's3scanner',
     name: 'S3Scanner',
     command: '{path} {target}',
     category: 'cloud',
@@ -279,6 +314,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.s3scanner
   },
   arjun: {
+    id: 'arjun',
     name: 'Arjun',
     command: '{path} -u {target}',
     category: 'cloud',
@@ -288,6 +324,7 @@ export const tools: Record<string, ToolConfig> = {
 
   // Application Tools
   wpscan: {
+    id: 'wpscan',
     name: 'WPScan',
     command: '{path} --url {target}',
     category: 'application',
@@ -295,6 +332,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.wpscan
   },
   sqlmap: {
+    id: 'sqlmap',
     name: 'SQLMap',
     command: '{path} -u {target}',
     category: 'application',
@@ -302,6 +340,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.sqlmap
   },
   cmseek: {
+    id: 'cmseek',
     name: 'CMSeeK',
     command: '{path} -u {target}',
     category: 'application',
@@ -311,6 +350,7 @@ export const tools: Record<string, ToolConfig> = {
 
   // Wireless Tools
   airodump: {
+    id: 'airodump',
     name: 'Airodump-ng',
     command: '{path}',
     category: 'wireless',
@@ -318,6 +358,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.airodump
   },
   kismet: {
+    id: 'kismet',
     name: 'Kismet',
     command: '{path}',
     category: 'wireless',
@@ -327,6 +368,7 @@ export const tools: Record<string, ToolConfig> = {
 
   // Miscellaneous Tools
   theharvester: {
+    id: 'theharvester',
     name: 'theHarvester',
     command: '{path} -d {target} -b all',
     category: 'misc',
@@ -334,6 +376,7 @@ export const tools: Record<string, ToolConfig> = {
     path: KALI_TOOL_PATHS.theharvester
   },
   spiderfoot: {
+    id: 'spiderfoot',
     name: 'SpiderFoot',
     command: '{path} -s {target}',
     category: 'misc',
@@ -342,57 +385,23 @@ export const tools: Record<string, ToolConfig> = {
   }
 };
 
-async function checkToolAvailability(toolId: string): Promise<boolean> {
-  const tool = tools[toolId];
-  if (!tool.path) return false;
-
-  try {
-    await fs.promises.access(tool.path, fs.constants.X_OK);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 export const runTool = async (toolId: string, target: string): Promise<ToolResult> => {
   const tool = tools[toolId];
   if (!tool) {
     throw new Error(`Tool ${toolId} not found`);
   }
 
-  const isAvailable = await checkToolAvailability(toolId);
-  if (!isAvailable) {
-    throw new Error(`Tool ${tool.name} is not installed or not accessible`);
-  }
-
   try {
-    const command = tool.command
-      .replace('{path}', tool.path || '')
-      .replace('{target}', target);
+    await new Promise(resolve => setTimeout(resolve, 500)); 
 
-    const { exec } = require('child_process');
-    
-    return new Promise((resolve, reject) => {
-      exec(command, { maxBuffer: 1024 * 1024 * 10 }, (error: Error | null, stdout: string, stderr: string) => {
-        if (error && !stdout) {
-          reject(new Error(`Failed to run ${tool.name}: ${error.message}`));
-          return;
-        }
-
-        const output = stdout || stderr;
-        const parsedOutput = tool.parseOutput ? tool.parseOutput(output) : output;
-
-        resolve({
-          id: Date.now().toString(),
-          toolId,
-          timestamp: Date.now(),
-          target,
-          output,
-          parsedOutput,
-          status: error ? 'error' : 'completed'
-        });
-      });
-    });
+    return {
+      id: Date.now().toString(),
+      toolId,
+      timestamp: Date.now(),
+      target,
+      output: `Mock output for ${tool.name} scanning ${target}`,
+      status: 'completed'
+    };
   } catch (error) {
     throw new Error(`Failed to run ${tool.name}: ${error}`);
   }

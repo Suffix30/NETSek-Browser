@@ -1,12 +1,12 @@
-# NETSek Browser ( CONCEPT IDEA )
+# NETSek Browser
 
-![NETSek Browser](https://cdn.discordapp.com/attachments/1201187528779235435/1335040700445884536/image.png?ex=67a89c4a&is=67a74aca&hm=fef19dac9e94cb4259156967940f740b6a2c818970fd7ae5193e3f42aaa3e34a&)
+![NETSek Browser](https://cdn.discordapp.com/attachments/1201187528779235435/1337891546086899722/image.png?ex=67a91819&is=67a7c699&hm=0b154a50b5c9f6e0c3b99eb4ec810d14e2f8dc737b85cb10ce082cc3f180d0b2&)
 
 A cyberpunk-themed security-focused web browser interface built with React, featuring a comprehensive suite of penetration testing and security analysis tools.
 
-##  Features
+## 🚀 Features
 
-### Security Tools Integration
+- 🔒 **Security Tools Integration**
   - Web Enumeration
   - Network & Port Scanning
   - Subdomain & DNS Analysis
@@ -15,27 +15,27 @@ A cyberpunk-themed security-focused web browser interface built with React, feat
   - Application Security
   - Wireless & IoT Testing
 
-### Advanced Interface**
+- 💻 **Advanced Interface**
   - Cyberpunk-inspired 3D UI elements
   - Neon glow effects
   - Responsive design
   - Dark/Light theme toggle
   - Resizable panels
 
-### Developer Tools**
+- 🛠️ **Developer Tools**
   - Built-in terminal
   - HTTP header inspector
   - Security analysis dashboard
   - Console with JavaScript execution
   - Tool configuration manager
 
-### Security Analysis**
+- 🔍 **Security Analysis**
   - Real-time header inspection
   - Cookie analysis
   - SSL/TLS certificate verification
   - Security vulnerability scanning
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - React 18
 - TypeScript
@@ -45,7 +45,7 @@ A cyberpunk-themed security-focused web browser interface built with React, feat
 - Zustand
 - Lucide Icons
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -80,7 +80,7 @@ npm run build
 npm run deploy
 ```
 
-## Customization
+## 🎨 Customization
 
 ### Themes
 The application supports both dark and light themes. Theme preferences are persisted in local storage.
@@ -91,7 +91,7 @@ Tools can be configured through the Config panel:
 - Argument configuration
 - Output parsing rules
 
-## Development
+## 🔧 Development
 
 ### Project Structure
 ```
@@ -109,26 +109,28 @@ src/
 2. Create necessary UI components
 3. Implement result parsing and display
 
-## License
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b blah/blah`)
-3. Commit your changes (`git commit -m 'blah/blah'`)
-4. Push to the branch (`git push origin blah/blah`)
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
-- KIRASec Community
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [XTerm.js](https://xtermjs.org/)
+- [Lucide Icons](https://lucide.dev/)
 
 ## 📧 Contact
 
-Project Link: [https://github.com/Suffix30/NETSek-Browser](https://github.com/Suffix30/UNDER_REPAIR_404)
+Project Link: [https://github.com/Suffix30/NETSek-Browser](https://github.com/Suffix30/NETSek-Browser)
 
 ## 🌐 Live Demo
-
-Check out the live demo: [https://suffix30.github.io/UNDER-REPAIR-404/](https://suffix30.github.io/UNDER-REPAIR-404/)

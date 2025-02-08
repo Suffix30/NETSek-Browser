@@ -3,7 +3,8 @@ import { Terminal, Play, Save, Trash, Info } from 'lucide-react';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useBrowserStore } from '../store/browserStore';
-import { useScriptStore, Script } from '../store/scriptStore';
+import { useScriptStore } from '../store/scriptStore';
+import type { Script } from '../store/scriptStore';
 
 export const Console: React.FC = () => {
   const [code, setCode] = useState('');
@@ -12,7 +13,7 @@ export const Console: React.FC = () => {
   const [scriptDescription, setScriptDescription] = useState('');
   const [error, setError] = useState<string | null>(null);
   const { url } = useBrowserStore();
-  const { scripts, addScript, updateScript, deleteScript, loadScripts } = useScriptStore();
+  const { scripts, addScript, deleteScript, loadScripts } = useScriptStore();
 
   useEffect(() => {
     loadScripts();

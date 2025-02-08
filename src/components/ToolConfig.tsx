@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { Settings, Save, Plus, Trash } from 'lucide-react';
 import { useToolStore } from '../store/toolStore';
 import { tools } from '../utils/toolRunner';
-import { ToolArgument, ToolConfigSchema } from '../types/tools';
+import type { ToolConfig } from '../utils/toolRunner';
 
-export const ToolConfig: React.FC = () => {
-  const { updateToolConfig, saveConfig, loadConfig } = useToolStore();
+export const ToolConfigPanel: React.FC = () => {
+  const { updateToolConfig, saveConfig } = useToolStore();
   const [selectedTool, setSelectedTool] = useState<string>(Object.keys(tools)[0]);
-  const [newArg, setNewArg] = useState<Partial<ToolArgument>>({});
+  const [newArg, setNewArg] = useState<Partial<NonNullable<ToolConfig['args']>[number]>>({});
 
   const handleSave = () => {
     try {
-      const config = ToolConfigSchema.parse(tools[selectedTool]);
-      saveConfig(selectedTool, config);
+      const toolConfig = {
+        ...tools[selectedTool]
+      } as ToolConfig;
+      saveConfig(selectedTool, toolConfig);
     } catch (error) {
       console.error('Invalid tool configuration:', error);
     }
@@ -21,15 +23,18 @@ export const ToolConfig: React.FC = () => {
   const handleAddArgument = () => {
     if (!newArg.name || !newArg.type) return;
 
+    const currentTool = tools[selectedTool];
+    const currentArgs = currentTool.args || [];
+
     updateToolConfig(selectedTool, {
       args: [
-        ...(tools[selectedTool].args || []),
+        ...currentArgs,
         {
           name: newArg.name,
           description: newArg.description || '',
           type: newArg.type as 'string' | 'number' | 'boolean',
           default: newArg.default,
-          required: newArg.required,
+          required: newArg.required || false,
         },
       ],
     });
@@ -38,8 +43,11 @@ export const ToolConfig: React.FC = () => {
   };
 
   const handleRemoveArgument = (name: string) => {
+    const currentTool = tools[selectedTool];
+    const currentArgs = currentTool.args || [];
+
     updateToolConfig(selectedTool, {
-      args: (tools[selectedTool].args || []).filter((arg) => arg.name !== name),
+      args: currentArgs.filter(arg => arg.name !== name),
     });
   };
 

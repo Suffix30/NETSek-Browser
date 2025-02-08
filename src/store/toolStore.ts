@@ -54,9 +54,9 @@ export const useToolStore = create<ToolStore>((set, get) => ({
   toggleRawOutput: () => set(state => ({ showRawOutput: !state.showRawOutput })),
   
   updateToolConfig: (toolId: string, config: Partial<ToolConfig>) => {
-    const currentConfig = tools[toolId];
+    const currentConfig = tools[toolId] ?? {};
     tools[toolId] = { ...currentConfig, ...config };
-    
+
     try {
       const configs = JSON.parse(localStorage.getItem('toolConfigs') || '{}');
       configs[toolId] = tools[toolId];
@@ -92,10 +92,10 @@ export const useToolStore = create<ToolStore>((set, get) => ({
     try {
       const savedConfigs = JSON.parse(localStorage.getItem('toolConfigs') || '{}');
       set({ configs: savedConfigs });
-      
+
       Object.entries(savedConfigs).forEach(([toolId, config]) => {
         if (tools[toolId]) {
-          tools[toolId] = { ...tools[toolId], ...config };
+          tools[toolId] = { ...tools[toolId], ...(config as ToolConfig) };
         }
       });
     } catch (error) {

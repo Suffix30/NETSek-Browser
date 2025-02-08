@@ -71,7 +71,7 @@ export const Navigation: React.FC = () => {
             defaultValue={url}
             onChange={handleUrlChange}
             onKeyDown={handleKeyDown}
-            placeholder="Enter URL (e.g., https://example.com)"
+            placeholder="Enter URL (e.g., https://discord.gg/kirasec)"
             className="w-full bg-transparent text-white neo-text"
             autoComplete="off"
             spellCheck="false"

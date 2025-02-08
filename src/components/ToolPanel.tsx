@@ -1,14 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { Tool } from '../types/tools';
 import { 
-  Scan, Network, Bug, Search, Shield, Database, FileSearch, Globe,
+  Network, Shield, Globe,
   Wifi, Cloud, MonitorSmartphone, Terminal, Server, Code, ChevronDown, ChevronRight
 } from 'lucide-react';
 import { useToolStore } from '../store/toolStore';
 import { useBrowserStore } from '../store/browserStore';
 import { tools } from '../utils/toolRunner';
 
-const getCategoryIcon = (category: Tool['category']) => {
+const getCategoryIcon = (category: string) => {
   switch (category) {
     case 'web':
       return <MonitorSmartphone className="text-blue-500" />;
@@ -47,13 +47,13 @@ export const ToolPanel: React.FC = () => {
   const { url } = useBrowserStore();
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
 
-  const groupedTools = useMemo(() => {
-    return Object.entries(tools).reduce((acc, [id, tool]) => {
+  const groupedTools = useMemo<Record<string, Tool[]>>(() => {
+    return Object.entries(tools).reduce((acc, [, tool]) => {
       const category = tool.category;
       if (!acc[category]) {
         acc[category] = [];
       }
-      acc[category].push({ id, ...tool });
+      acc[category].push(tool);
       return acc;
     }, {} as Record<string, Tool[]>);
   }, []);

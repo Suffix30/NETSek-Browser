@@ -23,7 +23,7 @@ export const analyzeRequest = async (url: string): Promise<SecurityAnalysis> => 
     ];
 
     const mockCertificate = {
-      issuer: 'Let\'s Encrypt Authority X3',
+      issuer: "Let's Encrypt Authority X3",
       validFrom: new Date(),
       validTo: new Date(Date.now() + 7776000000),
       subject: new URL(url).hostname,
@@ -47,7 +47,7 @@ export const analyzeRequest = async (url: string): Promise<SecurityAnalysis> => 
 export const analyzeHeaders = (headers: Headers): {
   security: { issue: string; severity: 'high' | 'medium' | 'low' }[];
 } => {
-  const issues = [];
+  const issues: { issue: string; severity: 'high' | 'medium' | 'low' }[] = [];
 
   if (!headers['Content-Security-Policy']) {
     issues.push({
@@ -76,7 +76,7 @@ export const analyzeHeaders = (headers: Headers): {
 export const analyzeCookies = (cookies: Cookie[]): {
   security: { issue: string; severity: 'high' | 'medium' | 'low' }[];
 } => {
-  const issues = [];
+  const issues: { issue: string; severity: 'high' | 'medium' | 'low' }[] = [];
 
   for (const cookie of cookies) {
     if (!cookie.secure) {
