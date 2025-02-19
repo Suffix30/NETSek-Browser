@@ -1,6 +1,6 @@
 # NETSek Browser
 
-![NETSek Browser](https://cdn.discordapp.com/attachments/1201187528779235435/1337891546086899722/image.png?ex=67a91819&is=67a7c699&hm=0b154a50b5c9f6e0c3b99eb4ec810d14e2f8dc737b85cb10ce082cc3f180d0b2&)
+![NETSek Browser](https://cdn.discordapp.com/attachments/1201187528779235435/1337891546086899722/image.png?ex=67b6efd9&is=67b59e59&hm=5c6bba2a39531c748f0b3ea3776720707ed2380ffb5780f84aab9f06e732398c&)
 
 A cyberpunk-themed security-focused web browser interface built with React, featuring a comprehensive suite of penetration testing and security analysis tools.
 
